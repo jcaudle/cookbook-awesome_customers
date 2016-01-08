@@ -6,3 +6,5 @@
 
 include_recipe 'apt::default'
 include_recipe 'awesome_customers::user'
+include_recipe 'firewall::default'
+include_recipe 'awesome_customers::webserver'
