@@ -30,3 +30,10 @@ file "#{node['awesome_customers']['document_root']}/index.php" do
   owner default['awesome_customers']['user']
   group default['awesome_customers']['group']
 end
+
+# Open port 80 to incoming traffic.
+firewall_rule 'http' do
+  port 80
+  protocol :tcp
+  action :allow
+end
