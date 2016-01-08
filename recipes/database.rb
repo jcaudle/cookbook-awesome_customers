@@ -23,3 +23,12 @@ mysql_service 'default' do
   initial_root_password root_password_data_bag_item['password']
   action [:create, :start]
 end
+
+mysql_database node['awesome_customers']['database']['dbname'] do
+  connection(
+    :host => node['awesome_customers']['database']['host'],
+    :username => node['awesome_customers']['database']['username'],
+    :password => root_password_data_bag_item['password']
+  )
+  action :create
+end
