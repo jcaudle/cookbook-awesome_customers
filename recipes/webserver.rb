@@ -18,7 +18,7 @@ httpd_config 'customers' do
 end
 
 # Create the document root directory.
-directory default['awesome_customers']['document_root'] do
+directory node['awesome_customers']['document_root'] do
   recursive true
 end
 
@@ -27,8 +27,8 @@ end
 file "#{node['awesome_customers']['document_root']}/index.php" do
   content '<html>This is a placeholder</html>'
   mode '0644'
-  owner default['awesome_customers']['user']
-  group default['awesome_customers']['group']
+  owner node['awesome_customers']['user']
+  group node['awesome_customers']['group']
 end
 
 # Open port 80 to incoming traffic.
