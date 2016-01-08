@@ -13,7 +13,7 @@ end
 # Add the site configuration.
 httpd_config 'customers' do
   instance 'customers'
-  source 'customers.conf.erg'
+  source 'customers.conf.erb'
   notifies :restart, 'httpd_service[customers]'
 end
 
