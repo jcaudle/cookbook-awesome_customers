@@ -5,3 +5,4 @@
 # Copyright (c) 2016 Joseph Caudle, All Rights Reserved.
 
 include_recipe 'apt::default'
+include_recipe 'awesome_customers::user'
