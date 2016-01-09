@@ -32,3 +32,19 @@ mysql_database node['awesome_customers']['database']['dbname'] do
   )
   action :create
 end
+
+# Load the encrypted data bag item that holds the database user's password.
+user_password_data_bag_item = Chef::EncryptedDataBagItem.load('passwords', 'db_admin_password', password_secret)
+
+# Add a database user.
+mysql_database_user node['awesome_customers']['database']['app']['username'] do
+  connection(
+    :host => node['awesome_customers']['database']['host'],
+    :username => node['awesome_customers']['database']['username'],
+    :password => root_password_data_bag_item['password']
+  )
+  password user_password_data_bag_item['password']
+  database_name node['awesome_customers']['database']['dbname']
+  host node['awesome_customers']['database']['host']
+  action [:create, :grant]
+end

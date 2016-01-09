@@ -10,3 +10,5 @@ default['awesome_customers']['passwords']['secret_path'] = '/etc/chef/encrypted_
 default['awesome_customers']['database']['dbname'] = 'products'
 default['awesome_customers']['database']['host'] = '127.0.0.1'
 default['awesome_customers']['database']['username'] = 'root'
+
+default['awesome_customers']['database']['app']['username'] = 'db_admin'
