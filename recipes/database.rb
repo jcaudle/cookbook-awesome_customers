@@ -51,7 +51,7 @@ end
 
 # Write schema seed file to filesystem.
 cookbook_file node['awesome_customers']['database']['seed_file'] do
-  source 'create_tables.sql'
+  source 'create-tables.sql'
   owner 'root'
   group 'root'
   mode '0600'
