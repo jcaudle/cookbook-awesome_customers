@@ -4,7 +4,7 @@ maintainer_email 'joseph@josephcaudle.com'
 license 'all_rights'
 description 'Installs/Configures awesome_customers'
 long_description 'Installs/Configures awesome_customers'
-version '0.3.0'
+version '0.3.1'
 
 depends 'apt', '~> 2.6.1'
 depends 'httpd', '~> 0.2.14'
