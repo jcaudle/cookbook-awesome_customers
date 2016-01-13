@@ -22,13 +22,19 @@ directory node['awesome_customers']['document_root'] do
   recursive true
 end
 
+# Load the secrets file and the encrypted data bag item that holds the database password.
+password_secret = Chef::EncryptedDataBagItem.load_secret(node['awesome_customers']['passwords']['secret_path'])
+user_password_data_bag_item = Chef::EncryptedDataBagItem.load('passwords', 'db_admin', password_secret)
 
 # Write a default home page.
-file "#{node['awesome_customers']['document_root']}/index.php" do
-  content '<html>This is a placeholder</html>'
+template "#{node['awesome_customers']['document_root']}/index.php" do
+  source 'index.php.erb'
   mode '0644'
   owner node['awesome_customers']['user']
   group node['awesome_customers']['group']
+  variables({
+    :database_password => user_password_data_bag_item['password']
+  })
 end
 
 # Open port 80 to incoming traffic.
