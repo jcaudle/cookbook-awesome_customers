@@ -37,3 +37,14 @@ firewall_rule 'http' do
   protocol :tcp
   action :allow
 end
+
+# Install the mod_php5 Apache module.
+httpd_module 'php5' do
+  instance 'customers'
+end
+
+# Install php5-mysql.
+package 'php5-mysql' do
+  action :install
+  notifies :restart, 'httpd_service[customers]'
+end
